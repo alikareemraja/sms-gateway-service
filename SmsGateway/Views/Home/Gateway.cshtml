@@ -1,0 +1,59 @@
+﻿@{
+    Layout = "../Shared/_Layout.cshtml";
+}
+
+<form class="form-horizontal">
+    <h4>Add a New Message.</h4>
+    <hr />
+    
+    <div class="form-group">
+        <label for="to" class="col-md-2 control-label">To</label>
+        <div class="col-md-10">
+            <input id="to" class="form-control" type="text" ng-model="newMessage.To"/>
+            
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="message" class="col-md-2 control-label">Message</label>
+        <div class="col-md-10">
+            <input id="message" class="form-control" type="text" ng-model="newMessage.Content"/>
+        </div>
+    </div>
+   
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <button class="btn btn-default" ng-click="addMessage()">Add To Queue</button>
+        </div>
+    </div>
+
+</form>
+
+<div grid-data grid-options="gridOptions" grid-actions="gridActions">
+    <!-- sample table layout goes below, but remember that you can you any mark-up here. -->
+    <table class="table">
+        <thead>
+        <tr>
+            <th sortable="To" class="sortable">
+                To
+            </th>
+            <th sortable="Content" class="sortable">
+                Message
+            </th>
+            <th sortable="Date" class="sortable">
+                Created Date
+            </th>
+            <th sortable='Status' class="sortable">
+                Status
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr grid-item>
+            <td ng-bind="item.To"></td>
+            <td ng-bind="item.Content"></td>
+            <td ng-bind="item.Date | date:'MM/dd/yyyy'"></td>
+            <td>{{statusText(item.Status)}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
